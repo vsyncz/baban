@@ -1,149 +1,104 @@
--- Jester/Mari & Biome Detector - amba Hub Style
+-- Jester/Mari & Biome Detector - Simple 2-Tab UI
 print("=== JESTER/MARI & BIOME DETECTOR LOADED ===")
 
 local Players = game:GetService("Players")
 local HttpService = game:GetService("HttpService")
 local UserInputService = game:GetService("UserInputService")
-local TweenService = game:GetService("TweenService")
 
 -- Create Main UI
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "ambaHubStyle"
+ScreenGui.Name = "SimpleDetector"
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
 -- Main Container
 local MainContainer = Instance.new("Frame")
 MainContainer.Parent = ScreenGui
-MainContainer.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
-MainContainer.Size = UDim2.new(0, 450, 0, 500)
-MainContainer.Position = UDim2.new(0.5, -225, 0.5, -250)
+MainContainer.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
+MainContainer.Size = UDim2.new(0, 400, 0, 450)
+MainContainer.Position = UDim2.new(0.5, -200, 0.5, -225)
 MainContainer.BorderSizePixel = 0
 
 local MainCorner = Instance.new("UICorner")
-MainCorner.CornerRadius = UDim.new(0, 12)
+MainCorner.CornerRadius = UDim.new(0, 8)
 MainCorner.Parent = MainContainer
 
 -- Header
 local Header = Instance.new("Frame")
 Header.Parent = MainContainer
-Header.BackgroundColor3 = Color3.fromRGB(35, 35, 40)
-Header.Size = UDim2.new(1, 0, 0, 80)
+Header.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
+Header.Size = UDim2.new(1, 0, 0, 60)
 Header.Position = UDim2.new(0, 0, 0, 0)
 Header.BorderSizePixel = 0
 
 local HeaderCorner = Instance.new("UICorner")
-HeaderCorner.CornerRadius = UDim.new(0, 12)
+HeaderCorner.CornerRadius = UDim.new(0, 8)
 HeaderCorner.Parent = Header
 
 local Title = Instance.new("TextLabel")
 Title.Parent = Header
 Title.BackgroundTransparency = 1
-Title.Size = UDim2.new(1, 0, 0.6, 0)
-Title.Position = UDim2.new(0, 0, 0.1, 0)
+Title.Size = UDim2.new(1, 0, 1, 0)
+Title.Position = UDim2.new(0, 0, 0, 0)
 Title.Text = "Jester/Mari Detector"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.Font = Enum.Font.GothamBold
-Title.TextSize = 24
-Title.TextStrokeTransparency = 0.8
-
-local Subtitle = Instance.new("TextLabel")
-Subtitle.Parent = Header
-Subtitle.BackgroundTransparency = 1
-Subtitle.Size = UDim2.new(1, 0, 0.4, 0)
-Subtitle.Position = UDim2.new(0, 0, 0.6, 0)
-Subtitle.Text = "Monitor & Alert System"
-Subtitle.TextColor3 = Color3.fromRGB(200, 200, 200)
-Subtitle.Font = Enum.Font.Gotham
-Subtitle.TextSize = 14
-
--- Tab Buttons Container
-local TabContainer = Instance.new("Frame")
-TabContainer.Parent = MainContainer
-TabContainer.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
-TabContainer.Size = UDim2.new(1, 0, 0, 50)
-TabContainer.Position = UDim2.new(0, 0, 0, 80)
-TabContainer.BorderSizePixel = 0
+Title.TextSize = 20
 
 -- Tab Buttons
-local MainTab = Instance.new("TextButton")
-MainTab.Parent = TabContainer
-MainTab.Size = UDim2.new(0.25, 0, 1, 0)
-MainTab.Position = UDim2.new(0, 0, 0, 0)
-MainTab.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
-MainTab.Text = "Main"
-MainTab.TextColor3 = Color3.fromRGB(255, 255, 255)
-MainTab.Font = Enum.Font.GothamBold
-MainTab.TextSize = 14
-MainTab.BorderSizePixel = 0
+local TabContainer = Instance.new("Frame")
+TabContainer.Parent = MainContainer
+TabContainer.BackgroundColor3 = Color3.fromRGB(35, 35, 40)
+TabContainer.Size = UDim2.new(1, 0, 0, 40)
+TabContainer.Position = UDim2.new(0, 0, 0, 60)
+TabContainer.BorderSizePixel = 0
 
-local EasyWayTab = Instance.new("TextButton")
-EasyWayTab.Parent = TabContainer
-EasyWayTab.Size = UDim2.new(0.25, 0, 1, 0)
-EasyWayTab.Position = UDim2.new(0.25, 0, 0, 0)
-EasyWayTab.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
-EasyWayTab.Text = "Easy-way"
-EasyWayTab.TextColor3 = Color3.fromRGB(200, 200, 200)
-EasyWayTab.Font = Enum.Font.Gotham
-EasyWayTab.TextSize = 14
-EasyWayTab.BorderSizePixel = 0
+local MerchantTab = Instance.new("TextButton")
+MerchantTab.Parent = TabContainer
+MerchantTab.Size = UDim2.new(0.5, 0, 1, 0)
+MerchantTab.Position = UDim2.new(0, 0, 0, 0)
+MerchantTab.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+MerchantTab.Text = "- Merchant"
+MerchantTab.TextColor3 = Color3.fromRGB(255, 255, 255)
+MerchantTab.Font = Enum.Font.GothamBold
+MerchantTab.TextSize = 14
+MerchantTab.BorderSizePixel = 0
 
-local BetaTab = Instance.new("TextButton")
-BetaTab.Parent = TabContainer
-BetaTab.Size = UDim2.new(0.25, 0, 1, 0)
-BetaTab.Position = UDim2.new(0.5, 0, 0, 0)
-BetaTab.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
-BetaTab.Text = "Biome"
-BetaTab.TextColor3 = Color3.fromRGB(200, 200, 200)
-BetaTab.Font = Enum.Font.Gotham
-BetaTab.TextSize = 14
-BetaTab.BorderSizePixel = 0
-
-local InfoTab = Instance.new("TextButton")
-InfoTab.Parent = TabContainer
-InfoTab.Size = UDim2.new(0.25, 0, 1, 0)
-InfoTab.Position = UDim2.new(0.75, 0, 0, 0)
-InfoTab.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
-InfoTab.Text = "INFO"
-InfoTab.TextColor3 = Color3.fromRGB(200, 200, 200)
-InfoTab.Font = Enum.Font.Gotham
-InfoTab.TextSize = 14
-InfoTab.BorderSizePixel = 0
+local BiomeTab = Instance.new("TextButton")
+BiomeTab.Parent = TabContainer
+BiomeTab.Size = UDim2.new(0.5, 0, 1, 0)
+BiomeTab.Position = UDim2.new(0.5, 0, 0, 0)
+BiomeTab.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
+BiomeTab.Text = "- Biome"
+BiomeTab.TextColor3 = Color3.fromRGB(200, 200, 200)
+BiomeTab.Font = Enum.Font.Gotham
+BiomeTab.TextSize = 14
+BiomeTab.BorderSizePixel = 0
 
 -- Content Area
 local ContentFrame = Instance.new("Frame")
 ContentFrame.Parent = MainContainer
-ContentFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
-ContentFrame.Size = UDim2.new(1, 0, 1, -130)
-ContentFrame.Position = UDim2.new(0, 0, 0, 130)
+ContentFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
+ContentFrame.Size = UDim2.new(1, 0, 1, -100)
+ContentFrame.Position = UDim2.new(0, 0, 0, 100)
 ContentFrame.BorderSizePixel = 0
 
--- ===== MAIN TAB CONTENT =====
-local MainContent = Instance.new("Frame")
-MainContent.Parent = ContentFrame
-MainContent.BackgroundTransparency = 1
-MainContent.Size = UDim2.new(1, 0, 1, 0)
-MainContent.Position = UDim2.new(0, 0, 0, 0)
-MainContent.Visible = true
-
-local WelcomeLabel = Instance.new("TextLabel")
-WelcomeLabel.Parent = MainContent
-WelcomeLabel.BackgroundTransparency = 1
-WelcomeLabel.Size = UDim2.new(1, 0, 0, 40)
-WelcomeLabel.Position = UDim2.new(0, 0, 0, 20)
-WelcomeLabel.Text = "Welcome to Jester/Mari Detector!"
-WelcomeLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-WelcomeLabel.Font = Enum.Font.GothamBold
-WelcomeLabel.TextSize = 18
+-- ===== MERCHANT TAB CONTENT =====
+local MerchantContent = Instance.new("Frame")
+MerchantContent.Parent = ContentFrame
+MerchantContent.BackgroundTransparency = 1
+MerchantContent.Size = UDim2.new(1, 0, 1, 0)
+MerchantContent.Position = UDim2.new(0, 0, 0, 0)
+MerchantContent.Visible = true
 
 -- Webhook Section
 local WebhookSection = Instance.new("Frame")
-WebhookSection.Parent = MainContent
-WebhookSection.BackgroundColor3 = Color3.fromRGB(35, 35, 40)
+WebhookSection.Parent = MerchantContent
+WebhookSection.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
 WebhookSection.Size = UDim2.new(0.9, 0, 0, 120)
-WebhookSection.Position = UDim2.new(0.05, 0, 0.15, 0)
+WebhookSection.Position = UDim2.new(0.05, 0, 0.05, 0)
 
 local WebhookCorner = Instance.new("UICorner")
-WebhookCorner.CornerRadius = UDim.new(0, 8)
+WebhookCorner.CornerRadius = UDim.new(0, 6)
 WebhookCorner.Parent = WebhookSection
 
 local WebhookLabel = Instance.new("TextLabel")
@@ -151,7 +106,7 @@ WebhookLabel.Parent = WebhookSection
 WebhookLabel.BackgroundTransparency = 1
 WebhookLabel.Size = UDim2.new(0.9, 0, 0, 30)
 WebhookLabel.Position = UDim2.new(0.05, 0, 0, 0)
-WebhookLabel.Text = "Discord Webhook URL:"
+WebhookLabel.Text = "Discord Webhook:"
 WebhookLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 WebhookLabel.Font = Enum.Font.GothamBold
 WebhookLabel.TextSize = 14
@@ -160,10 +115,10 @@ WebhookLabel.TextXAlignment = Enum.TextXAlignment.Left
 local WebhookBox = Instance.new("TextBox")
 WebhookBox.Parent = WebhookSection
 WebhookBox.Size = UDim2.new(0.9, 0, 0, 40)
-WebhookBox.Position = UDim2.new(0.05, 0, 0.3, 0)
+WebhookBox.Position = UDim2.new(0.05, 0, 0.35, 0)
 WebhookBox.BackgroundColor3 = Color3.fromRGB(50, 50, 55)
 WebhookBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-WebhookBox.PlaceholderText = "Paste Discord webhook URL here..."
+WebhookBox.PlaceholderText = "Paste webhook URL here..."
 WebhookBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
 WebhookBox.Text = ""
 WebhookBox.Font = Enum.Font.Gotham
@@ -171,18 +126,18 @@ WebhookBox.TextSize = 12
 WebhookBox.TextWrapped = true
 
 local WebhookBoxCorner = Instance.new("UICorner")
-WebhookBoxCorner.CornerRadius = UDim.new(0, 6)
+WebhookBoxCorner.CornerRadius = UDim.new(0, 4)
 WebhookBoxCorner.Parent = WebhookBox
 
 -- Server Link Section
 local ServerSection = Instance.new("Frame")
-ServerSection.Parent = MainContent
-ServerSection.BackgroundColor3 = Color3.fromRGB(35, 35, 40)
+ServerSection.Parent = MerchantContent
+ServerSection.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
 ServerSection.Size = UDim2.new(0.9, 0, 0, 80)
-ServerSection.Position = UDim2.new(0.05, 0, 0.45, 0)
+ServerSection.Position = UDim2.new(0.05, 0, 0.35, 0)
 
 local ServerCorner = Instance.new("UICorner")
-ServerCorner.CornerRadius = UDim.new(0, 8)
+ServerCorner.CornerRadius = UDim.new(0, 6)
 ServerCorner.Parent = ServerSection
 
 local ServerLabel = Instance.new("TextLabel")
@@ -210,15 +165,15 @@ ServerBox.TextSize = 12
 ServerBox.TextWrapped = true
 
 local ServerBoxCorner = Instance.new("UICorner")
-ServerBoxCorner.CornerRadius = UDim.new(0, 6)
+ServerBoxCorner.CornerRadius = UDim.new(0, 4)
 ServerBoxCorner.Parent = ServerBox
 
 -- Action Buttons
 local ActionFrame = Instance.new("Frame")
-ActionFrame.Parent = MainContent
+ActionFrame.Parent = MerchantContent
 ActionFrame.BackgroundTransparency = 1
-ActionFrame.Size = UDim2.new(0.9, 0, 0, 50)
-ActionFrame.Position = UDim2.new(0.05, 0, 0.75, 0)
+ActionFrame.Size = UDim2.new(0.9, 0, 0, 40)
+ActionFrame.Position = UDim2.new(0.05, 0, 0.65, 0)
 
 local ApplyButton = Instance.new("TextButton")
 ApplyButton.Parent = ActionFrame
@@ -231,7 +186,7 @@ ApplyButton.Font = Enum.Font.GothamBold
 ApplyButton.TextSize = 14
 
 local ApplyCorner = Instance.new("UICorner")
-ApplyCorner.CornerRadius = UDim.new(0, 8)
+ApplyCorner.CornerRadius = UDim.new(0, 6)
 ApplyCorner.Parent = ApplyButton
 
 local TestButton = Instance.new("TextButton")
@@ -245,50 +200,20 @@ TestButton.Font = Enum.Font.GothamBold
 TestButton.TextSize = 14
 
 local TestCorner = Instance.new("UICorner")
-TestCorner.CornerRadius = UDim.new(0, 8)
+TestCorner.CornerRadius = UDim.new(0, 6)
 TestCorner.Parent = TestButton
 
 -- Status Label
 local StatusLabel = Instance.new("TextLabel")
-StatusLabel.Parent = MainContent
+StatusLabel.Parent = MerchantContent
 StatusLabel.BackgroundTransparency = 1
 StatusLabel.Size = UDim2.new(0.9, 0, 0, 40)
-StatusLabel.Position = UDim2.new(0.05, 0, 0.9, 0)
+StatusLabel.Position = UDim2.new(0.05, 0, 0.8, 0)
 StatusLabel.Text = "Status: Ready to setup"
 StatusLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
 StatusLabel.Font = Enum.Font.Gotham
 StatusLabel.TextSize = 12
 StatusLabel.TextWrapped = true
-
--- ===== EASY-WAY TAB CONTENT =====
-local EasyWayContent = Instance.new("Frame")
-EasyWayContent.Parent = ContentFrame
-EasyWayContent.BackgroundTransparency = 1
-EasyWayContent.Size = UDim2.new(1, 0, 1, 0)
-EasyWayContent.Position = UDim2.new(0, 0, 0, 0)
-EasyWayContent.Visible = false
-
-local EasyWayTitle = Instance.new("TextLabel")
-EasyWayTitle.Parent = EasyWayContent
-EasyWayTitle.BackgroundTransparency = 1
-EasyWayTitle.Size = UDim2.new(1, 0, 0, 40)
-EasyWayTitle.Position = UDim2.new(0, 0, 0, 20)
-EasyWayTitle.Text = "Quick Setup"
-EasyWayTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-EasyWayTitle.Font = Enum.Font.GothamBold
-EasyWayTitle.TextSize = 18
-
-local QuickInfo = Instance.new("TextLabel")
-QuickInfo.Parent = EasyWayContent
-QuickInfo.BackgroundTransparency = 1
-QuickInfo.Size = UDim2.new(0.9, 0, 0, 150)
-QuickInfo.Position = UDim2.new(0.05, 0, 0.15, 0)
-QuickInfo.Text = "Simply paste your Discord webhook and click 'Apply' to start monitoring.\n\n• Detects 'Jester' and 'Mari' in chat\n• Auto-sends Discord notifications\n• Includes role mentions\n• Works in background"
-QuickInfo.TextColor3 = Color3.fromRGB(200, 200, 200)
-QuickInfo.Font = Enum.Font.Gotham
-QuickInfo.TextSize = 12
-QuickInfo.TextWrapped = true
-QuickInfo.TextXAlignment = Enum.TextXAlignment.Left
 
 -- ===== BIOME TAB CONTENT =====
 local BiomeContent = Instance.new("Frame")
@@ -298,21 +223,33 @@ BiomeContent.Size = UDim2.new(1, 0, 1, 0)
 BiomeContent.Position = UDim2.new(0, 0, 0, 0)
 BiomeContent.Visible = false
 
+-- Biome Info Section
+local BiomeInfoSection = Instance.new("Frame")
+BiomeInfoSection.Parent = BiomeContent
+BiomeInfoSection.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
+BiomeInfoSection.Size = UDim2.new(0.9, 0, 0, 200)
+BiomeInfoSection.Position = UDim2.new(0.05, 0, 0.05, 0)
+
+local BiomeInfoCorner = Instance.new("UICorner")
+BiomeInfoCorner.CornerRadius = UDim.new(0, 6)
+BiomeInfoCorner.Parent = BiomeInfoSection
+
 local BiomeTitle = Instance.new("TextLabel")
-BiomeTitle.Parent = BiomeContent
+BiomeTitle.Parent = BiomeInfoSection
 BiomeTitle.BackgroundTransparency = 1
-BiomeTitle.Size = UDim2.new(1, 0, 0, 40)
-BiomeTitle.Position = UDim2.new(0, 0, 0, 20)
+BiomeTitle.Size = UDim2.new(0.9, 0, 0, 30)
+BiomeTitle.Position = UDim2.new(0.05, 0, 0, 0)
 BiomeTitle.Text = "Biome Detection"
 BiomeTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 BiomeTitle.Font = Enum.Font.GothamBold
-BiomeTitle.TextSize = 18
+BiomeTitle.TextSize = 16
+BiomeTitle.TextXAlignment = Enum.TextXAlignment.Left
 
 local BiomeInfo = Instance.new("TextLabel")
-BiomeInfo.Parent = BiomeContent
+BiomeInfo.Parent = BiomeInfoSection
 BiomeInfo.BackgroundTransparency = 1
-BiomeInfo.Size = UDim2.new(0.9, 0, 0, 200)
-BiomeInfo.Position = UDim2.new(0.05, 0, 0.15, 0)
+BiomeInfo.Size = UDim2.new(0.9, 0, 0, 150)
+BiomeInfo.Position = UDim2.new(0.05, 0, 0.2, 0)
 BiomeInfo.Text = "Auto-detects these biome messages:\n\n⚡ GLITCHED BIOME:\n• [Manager]: Unexpected error occurred. [Code 404]\n• [Manager]: [Code 404] has resolved.\n\n💤 DREAMSPACE BIOME:\n• [Dreamspace]: You begin to feel sleepy...\n• [Dreamspace]: Waking up...\n\nBiome detection starts automatically with merchant detection."
 BiomeInfo.TextColor3 = Color3.fromRGB(200, 200, 200)
 BiomeInfo.Font = Enum.Font.Gotham
@@ -320,53 +257,46 @@ BiomeInfo.TextSize = 12
 BiomeInfo.TextWrapped = true
 BiomeInfo.TextXAlignment = Enum.TextXAlignment.Left
 
--- ===== INFO TAB CONTENT =====
-local InfoContent = Instance.new("Frame")
-InfoContent.Parent = ContentFrame
-InfoContent.BackgroundTransparency = 1
-InfoContent.Size = UDim2.new(1, 0, 1, 0)
-InfoContent.Position = UDim2.new(0, 0, 0, 0)
-InfoContent.Visible = false
+-- Biome Status
+local BiomeStatusSection = Instance.new("Frame")
+BiomeStatusSection.Parent = BiomeContent
+BiomeStatusSection.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
+BiomeStatusSection.Size = UDim2.new(0.9, 0, 0, 80)
+BiomeStatusSection.Position = UDim2.new(0.05, 0, 0.65, 0)
 
-local InfoTitle = Instance.new("TextLabel")
-InfoTitle.Parent = InfoContent
-InfoTitle.BackgroundTransparency = 1
-InfoTitle.Size = UDim2.new(1, 0, 0, 40)
-InfoTitle.Position = UDim2.new(0, 0, 0, 20)
-InfoTitle.Text = "Information"
-InfoTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-InfoTitle.Font = Enum.Font.GothamBold
-InfoTitle.TextSize = 18
+local BiomeStatusCorner = Instance.new("UICorner")
+BiomeStatusCorner.CornerRadius = UDim.new(0, 6)
+BiomeStatusCorner.Parent = BiomeStatusSection
 
-local InfoText = Instance.new("TextLabel")
-InfoText.Parent = InfoContent
-InfoText.BackgroundTransparency = 1
-InfoText.Size = UDim2.new(0.9, 0, 0, 200)
-InfoText.Position = UDim2.new(0.05, 0, 0.15, 0)
-InfoText.Text = "Jester/Mari Detector v2.0\n\nFEATURES:\n• Real-time chat monitoring\n• Discord webhook integration\n• Role mention system\n• Biome detection\n• Private server support\n\nHOW TO USE:\n1. Paste Discord webhook\n2. Click 'Apply'\n3. Start monitoring!"
-InfoText.TextColor3 = Color3.fromRGB(200, 200, 200)
-InfoText.Font = Enum.Font.Gotham
-InfoText.TextSize = 12
-InfoText.TextWrapped = true
-InfoText.TextXAlignment = Enum.TextXAlignment.Left
+local BiomeStatusLabel = Instance.new("TextLabel")
+BiomeStatusLabel.Parent = BiomeStatusSection
+BiomeStatusLabel.BackgroundTransparency = 1
+BiomeStatusLabel.Size = UDim2.new(0.9, 0, 0.8, 0)
+BiomeStatusLabel.Position = UDim2.new(0.05, 0, 0.1, 0)
+BiomeStatusLabel.Text = "Biome Monitoring Status:\n• GLITCHED: Ready\n• DREAMSPACE: Ready"
+BiomeStatusLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+BiomeStatusLabel.Font = Enum.Font.Gotham
+BiomeStatusLabel.TextSize = 12
+BiomeStatusLabel.TextWrapped = true
+BiomeStatusLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 -- Toggle Button
 local ToggleButton = Instance.new("TextButton")
 ToggleButton.Parent = ScreenGui
-ToggleButton.Size = UDim2.new(0, 60, 0, 60)
+ToggleButton.Size = UDim2.new(0, 50, 0, 50)
 ToggleButton.Position = UDim2.new(0, 20, 0, 20)
-ToggleButton.BackgroundColor3 = Color3.fromRGB(35, 35, 40)
+ToggleButton.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
 ToggleButton.Text = "🔔"
 ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 ToggleButton.Font = Enum.Font.GothamBold
-ToggleButton.TextSize = 24
+ToggleButton.TextSize = 20
 ToggleButton.Visible = false
 
 local ToggleCorner = Instance.new("UICorner")
-ToggleCorner.CornerRadius = UDim.new(0, 12)
+ToggleCorner.CornerRadius = UDim.new(0, 8)
 ToggleCorner.Parent = ToggleButton
 
--- Close Button (Small X on top right)
+-- Close Button
 local CloseButton = Instance.new("TextButton")
 CloseButton.Parent = MainContainer
 CloseButton.Size = UDim2.new(0, 25, 0, 25)
@@ -376,10 +306,9 @@ CloseButton.Text = "X"
 CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 CloseButton.Font = Enum.Font.GothamBold
 CloseButton.TextSize = 12
-CloseButton.ZIndex = 2
 
 local CloseCorner = Instance.new("UICorner")
-CloseCorner.CornerRadius = UDim.new(0, 6)
+CloseCorner.CornerRadius = UDim.new(0, 4)
 CloseCorner.Parent = CloseButton
 
 -- ===== VARIABLES & CONFIGURATION =====
@@ -447,46 +376,28 @@ end)
 
 -- ===== TAB FUNCTIONS =====
 local function switchToTab(tabName)
-    MainContent.Visible = false
-    EasyWayContent.Visible = false
+    MerchantContent.Visible = false
     BiomeContent.Visible = false
-    InfoContent.Visible = false
     
-    MainTab.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
-    EasyWayTab.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
-    BetaTab.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
-    InfoTab.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
+    MerchantTab.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
+    BiomeTab.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
     
-    MainTab.TextColor3 = Color3.fromRGB(200, 200, 200)
-    EasyWayTab.TextColor3 = Color3.fromRGB(200, 200, 200)
-    BetaTab.TextColor3 = Color3.fromRGB(200, 200, 200)
-    InfoTab.TextColor3 = Color3.fromRGB(200, 200, 200)
+    MerchantTab.TextColor3 = Color3.fromRGB(200, 200, 200)
+    BiomeTab.TextColor3 = Color3.fromRGB(200, 200, 200)
     
-    MainTab.Font = Enum.Font.Gotham
-    EasyWayTab.Font = Enum.Font.Gotham
-    BetaTab.Font = Enum.Font.Gotham
-    InfoTab.Font = Enum.Font.Gotham
+    MerchantTab.Font = Enum.Font.Gotham
+    BiomeTab.Font = Enum.Font.Gotham
     
-    if tabName == "main" then
-        MainContent.Visible = true
-        MainTab.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
-        MainTab.TextColor3 = Color3.fromRGB(255, 255, 255)
-        MainTab.Font = Enum.Font.GothamBold
-    elseif tabName == "easyway" then
-        EasyWayContent.Visible = true
-        EasyWayTab.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
-        EasyWayTab.TextColor3 = Color3.fromRGB(255, 255, 255)
-        EasyWayTab.Font = Enum.Font.GothamBold
+    if tabName == "merchant" then
+        MerchantContent.Visible = true
+        MerchantTab.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+        MerchantTab.TextColor3 = Color3.fromRGB(255, 255, 255)
+        MerchantTab.Font = Enum.Font.GothamBold
     elseif tabName == "biome" then
         BiomeContent.Visible = true
-        BetaTab.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
-        BetaTab.TextColor3 = Color3.fromRGB(255, 255, 255)
-        BetaTab.Font = Enum.Font.GothamBold
-    elseif tabName == "info" then
-        InfoContent.Visible = true
-        InfoTab.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
-        InfoTab.TextColor3 = Color3.fromRGB(255, 255, 255)
-        InfoTab.Font = Enum.Font.GothamBold
+        BiomeTab.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+        BiomeTab.TextColor3 = Color3.fromRGB(255, 255, 255)
+        BiomeTab.Font = Enum.Font.GothamBold
     end
 end
 
@@ -542,7 +453,7 @@ local function sendToDiscord(message, playerName, mentionType)
             }
         },
         ["footer"] = {
-            ["text"] = "amba Hub Detector"
+            ["text"] = "Jester/Mari Detector"
         }
     }
     
@@ -648,10 +559,8 @@ ToggleButton.MouseButton1Click:Connect(function()
     ToggleButton.Visible = false
 end)
 
-MainTab.MouseButton1Click:Connect(function() switchToTab("main") end)
-EasyWayTab.MouseButton1Click:Connect(function() switchToTab("easyway") end)
-BetaTab.MouseButton1Click:Connect(function() switchToTab("biome") end)
-InfoTab.MouseButton1Click:Connect(function() switchToTab("info") end)
+MerchantTab.MouseButton1Click:Connect(function() switchToTab("merchant") end)
+BiomeTab.MouseButton1Click:Connect(function() switchToTab("biome") end)
 
 ApplyButton.MouseButton1Click:Connect(function()
     merchantWebhookUrl = WebhookBox.Text
@@ -673,7 +582,7 @@ TestButton.MouseButton1Click:Connect(function()
     
     if merchantWebhookUrl ~= "" and string.find(merchantWebhookUrl:lower(), "discord.com/api/webhooks") then
         StatusLabel.Text = "Status: Sending test..."
-        local success = sendToDiscord("🧪 Test notification from amba Hub", "TEST", "Jester")
+        local success = sendToDiscord("🧪 Test notification from detector", "TEST", "Jester")
         if success then
             StatusLabel.Text = "Status: Test sent!"
         end
@@ -683,11 +592,11 @@ TestButton.MouseButton1Click:Connect(function()
 end)
 
 -- Initialize
-switchToTab("main")
-print("✅ amba Hub Style Detector Loaded!")
+switchToTab("merchant")
+print("✅ Simple 2-Tab Detector Loaded!")
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "amba Hub Detector",
+    Title = "Jester/Mari Detector",
     Text = "Click the 🔔 button to open",
     Duration = 5
 })
