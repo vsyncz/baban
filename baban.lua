@@ -1,4 +1,4 @@
--- Jester/Mari & Biome Detector - Simple 2-Tab UI
+-- Jester/Mari & Biome Detector - Both Tabs with Full Features
 print("=== JESTER/MARI & BIOME DETECTOR LOADED ===")
 
 local Players = game:GetService("Players")
@@ -14,8 +14,8 @@ ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 local MainContainer = Instance.new("Frame")
 MainContainer.Parent = ScreenGui
 MainContainer.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
-MainContainer.Size = UDim2.new(0, 400, 0, 450)
-MainContainer.Position = UDim2.new(0.5, -200, 0.5, -225)
+MainContainer.Size = UDim2.new(0, 400, 0, 500)
+MainContainer.Position = UDim2.new(0.5, -200, 0.5, -250)
 MainContainer.BorderSizePixel = 0
 
 local MainCorner = Instance.new("UICorner")
@@ -112,22 +112,22 @@ WebhookLabel.Font = Enum.Font.GothamBold
 WebhookLabel.TextSize = 14
 WebhookLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-local WebhookBox = Instance.new("TextBox")
-WebhookBox.Parent = WebhookSection
-WebhookBox.Size = UDim2.new(0.9, 0, 0, 40)
-WebhookBox.Position = UDim2.new(0.05, 0, 0.35, 0)
-WebhookBox.BackgroundColor3 = Color3.fromRGB(50, 50, 55)
-WebhookBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-WebhookBox.PlaceholderText = "Paste webhook URL here..."
-WebhookBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
-WebhookBox.Text = ""
-WebhookBox.Font = Enum.Font.Gotham
-WebhookBox.TextSize = 12
-WebhookBox.TextWrapped = true
+local MerchantWebhookBox = Instance.new("TextBox")
+MerchantWebhookBox.Parent = WebhookSection
+MerchantWebhookBox.Size = UDim2.new(0.9, 0, 0, 40)
+MerchantWebhookBox.Position = UDim2.new(0.05, 0, 0.35, 0)
+MerchantWebhookBox.BackgroundColor3 = Color3.fromRGB(50, 50, 55)
+MerchantWebhookBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+MerchantWebhookBox.PlaceholderText = "Paste webhook URL for Merchant alerts..."
+MerchantWebhookBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
+MerchantWebhookBox.Text = ""
+MerchantWebhookBox.Font = Enum.Font.Gotham
+MerchantWebhookBox.TextSize = 12
+MerchantWebhookBox.TextWrapped = true
 
 local WebhookBoxCorner = Instance.new("UICorner")
 WebhookBoxCorner.CornerRadius = UDim.new(0, 4)
-WebhookBoxCorner.Parent = WebhookBox
+WebhookBoxCorner.Parent = MerchantWebhookBox
 
 -- Server Link Section
 local ServerSection = Instance.new("Frame")
@@ -151,69 +151,69 @@ ServerLabel.Font = Enum.Font.GothamBold
 ServerLabel.TextSize = 14
 ServerLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-local ServerBox = Instance.new("TextBox")
-ServerBox.Parent = ServerSection
-ServerBox.Size = UDim2.new(0.9, 0, 0, 35)
-ServerBox.Position = UDim2.new(0.05, 0, 0.45, 0)
-ServerBox.BackgroundColor3 = Color3.fromRGB(50, 50, 55)
-ServerBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-ServerBox.PlaceholderText = "Private server link (optional)..."
-ServerBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
-ServerBox.Text = ""
-ServerBox.Font = Enum.Font.Gotham
-ServerBox.TextSize = 12
-ServerBox.TextWrapped = true
+local MerchantServerBox = Instance.new("TextBox")
+MerchantServerBox.Parent = ServerSection
+MerchantServerBox.Size = UDim2.new(0.9, 0, 0, 35)
+MerchantServerBox.Position = UDim2.new(0.05, 0, 0.45, 0)
+MerchantServerBox.BackgroundColor3 = Color3.fromRGB(50, 50, 55)
+MerchantServerBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+MerchantServerBox.PlaceholderText = "Private server link (optional)..."
+MerchantServerBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
+MerchantServerBox.Text = ""
+MerchantServerBox.Font = Enum.Font.Gotham
+MerchantServerBox.TextSize = 12
+MerchantServerBox.TextWrapped = true
 
 local ServerBoxCorner = Instance.new("UICorner")
 ServerBoxCorner.CornerRadius = UDim.new(0, 4)
-ServerBoxCorner.Parent = ServerBox
+ServerBoxCorner.Parent = MerchantServerBox
 
 -- Action Buttons
-local ActionFrame = Instance.new("Frame")
-ActionFrame.Parent = MerchantContent
-ActionFrame.BackgroundTransparency = 1
-ActionFrame.Size = UDim2.new(0.9, 0, 0, 40)
-ActionFrame.Position = UDim2.new(0.05, 0, 0.65, 0)
+local MerchantActionFrame = Instance.new("Frame")
+MerchantActionFrame.Parent = MerchantContent
+MerchantActionFrame.BackgroundTransparency = 1
+MerchantActionFrame.Size = UDim2.new(0.9, 0, 0, 40)
+MerchantActionFrame.Position = UDim2.new(0.05, 0, 0.65, 0)
 
-local ApplyButton = Instance.new("TextButton")
-ApplyButton.Parent = ActionFrame
-ApplyButton.Size = UDim2.new(0.48, 0, 1, 0)
-ApplyButton.Position = UDim2.new(0, 0, 0, 0)
-ApplyButton.BackgroundColor3 = Color3.fromRGB(70, 150, 70)
-ApplyButton.Text = "Apply"
-ApplyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-ApplyButton.Font = Enum.Font.GothamBold
-ApplyButton.TextSize = 14
+local MerchantApplyButton = Instance.new("TextButton")
+MerchantApplyButton.Parent = MerchantActionFrame
+MerchantApplyButton.Size = UDim2.new(0.48, 0, 1, 0)
+MerchantApplyButton.Position = UDim2.new(0, 0, 0, 0)
+MerchantApplyButton.BackgroundColor3 = Color3.fromRGB(70, 150, 70)
+MerchantApplyButton.Text = "Apply"
+MerchantApplyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+MerchantApplyButton.Font = Enum.Font.GothamBold
+MerchantApplyButton.TextSize = 14
 
-local ApplyCorner = Instance.new("UICorner")
-ApplyCorner.CornerRadius = UDim.new(0, 6)
-ApplyCorner.Parent = ApplyButton
+local MerchantApplyCorner = Instance.new("UICorner")
+MerchantApplyCorner.CornerRadius = UDim.new(0, 6)
+MerchantApplyCorner.Parent = MerchantApplyButton
 
-local TestButton = Instance.new("TextButton")
-TestButton.Parent = ActionFrame
-TestButton.Size = UDim2.new(0.48, 0, 1, 0)
-TestButton.Position = UDim2.new(0.52, 0, 0, 0)
-TestButton.BackgroundColor3 = Color3.fromRGB(50, 100, 200)
-TestButton.Text = "Test"
-TestButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-TestButton.Font = Enum.Font.GothamBold
-TestButton.TextSize = 14
+local MerchantTestButton = Instance.new("TextButton")
+MerchantTestButton.Parent = MerchantActionFrame
+MerchantTestButton.Size = UDim2.new(0.48, 0, 1, 0)
+MerchantTestButton.Position = UDim2.new(0.52, 0, 0, 0)
+MerchantTestButton.BackgroundColor3 = Color3.fromRGB(50, 100, 200)
+MerchantTestButton.Text = "Test"
+MerchantTestButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+MerchantTestButton.Font = Enum.Font.GothamBold
+MerchantTestButton.TextSize = 14
 
-local TestCorner = Instance.new("UICorner")
-TestCorner.CornerRadius = UDim.new(0, 6)
-TestCorner.Parent = TestButton
+local MerchantTestCorner = Instance.new("UICorner")
+MerchantTestCorner.CornerRadius = UDim.new(0, 6)
+MerchantTestCorner.Parent = MerchantTestButton
 
 -- Status Label
-local StatusLabel = Instance.new("TextLabel")
-StatusLabel.Parent = MerchantContent
-StatusLabel.BackgroundTransparency = 1
-StatusLabel.Size = UDim2.new(0.9, 0, 0, 40)
-StatusLabel.Position = UDim2.new(0.05, 0, 0.8, 0)
-StatusLabel.Text = "Status: Ready to setup"
-StatusLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
-StatusLabel.Font = Enum.Font.Gotham
-StatusLabel.TextSize = 12
-StatusLabel.TextWrapped = true
+local MerchantStatusLabel = Instance.new("TextLabel")
+MerchantStatusLabel.Parent = MerchantContent
+MerchantStatusLabel.BackgroundTransparency = 1
+MerchantStatusLabel.Size = UDim2.new(0.9, 0, 0, 40)
+MerchantStatusLabel.Position = UDim2.new(0.05, 0, 0.8, 0)
+MerchantStatusLabel.Text = "Status: Ready to setup Merchant detection"
+MerchantStatusLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+MerchantStatusLabel.Font = Enum.Font.Gotham
+MerchantStatusLabel.TextSize = 12
+MerchantStatusLabel.TextWrapped = true
 
 -- ===== BIOME TAB CONTENT =====
 local BiomeContent = Instance.new("Frame")
@@ -223,62 +223,130 @@ BiomeContent.Size = UDim2.new(1, 0, 1, 0)
 BiomeContent.Position = UDim2.new(0, 0, 0, 0)
 BiomeContent.Visible = false
 
--- Biome Info Section
-local BiomeInfoSection = Instance.new("Frame")
-BiomeInfoSection.Parent = BiomeContent
-BiomeInfoSection.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
-BiomeInfoSection.Size = UDim2.new(0.9, 0, 0, 200)
-BiomeInfoSection.Position = UDim2.new(0.05, 0, 0.05, 0)
+-- Biome Webhook Section
+local BiomeWebhookSection = Instance.new("Frame")
+BiomeWebhookSection.Parent = BiomeContent
+BiomeWebhookSection.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
+BiomeWebhookSection.Size = UDim2.new(0.9, 0, 0, 120)
+BiomeWebhookSection.Position = UDim2.new(0.05, 0, 0.05, 0)
 
-local BiomeInfoCorner = Instance.new("UICorner")
-BiomeInfoCorner.CornerRadius = UDim.new(0, 6)
-BiomeInfoCorner.Parent = BiomeInfoSection
+local BiomeWebhookCorner = Instance.new("UICorner")
+BiomeWebhookCorner.CornerRadius = UDim.new(0, 6)
+BiomeWebhookCorner.Parent = BiomeWebhookSection
 
-local BiomeTitle = Instance.new("TextLabel")
-BiomeTitle.Parent = BiomeInfoSection
-BiomeTitle.BackgroundTransparency = 1
-BiomeTitle.Size = UDim2.new(0.9, 0, 0, 30)
-BiomeTitle.Position = UDim2.new(0.05, 0, 0, 0)
-BiomeTitle.Text = "Biome Detection"
-BiomeTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-BiomeTitle.Font = Enum.Font.GothamBold
-BiomeTitle.TextSize = 16
-BiomeTitle.TextXAlignment = Enum.TextXAlignment.Left
+local BiomeWebhookLabel = Instance.new("TextLabel")
+BiomeWebhookLabel.Parent = BiomeWebhookSection
+BiomeWebhookLabel.BackgroundTransparency = 1
+BiomeWebhookLabel.Size = UDim2.new(0.9, 0, 0, 30)
+BiomeWebhookLabel.Position = UDim2.new(0.05, 0, 0, 0)
+BiomeWebhookLabel.Text = "Discord Webhook:"
+BiomeWebhookLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+BiomeWebhookLabel.Font = Enum.Font.GothamBold
+BiomeWebhookLabel.TextSize = 14
+BiomeWebhookLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-local BiomeInfo = Instance.new("TextLabel")
-BiomeInfo.Parent = BiomeInfoSection
-BiomeInfo.BackgroundTransparency = 1
-BiomeInfo.Size = UDim2.new(0.9, 0, 0, 150)
-BiomeInfo.Position = UDim2.new(0.05, 0, 0.2, 0)
-BiomeInfo.Text = "Auto-detects these biome messages:\n\n⚡ GLITCHED BIOME:\n• [Manager]: Unexpected error occurred. [Code 404]\n• [Manager]: [Code 404] has resolved.\n\n💤 DREAMSPACE BIOME:\n• [Dreamspace]: You begin to feel sleepy...\n• [Dreamspace]: Waking up...\n\nBiome detection starts automatically with merchant detection."
-BiomeInfo.TextColor3 = Color3.fromRGB(200, 200, 200)
-BiomeInfo.Font = Enum.Font.Gotham
-BiomeInfo.TextSize = 12
-BiomeInfo.TextWrapped = true
-BiomeInfo.TextXAlignment = Enum.TextXAlignment.Left
+local BiomeWebhookBox = Instance.new("TextBox")
+BiomeWebhookBox.Parent = BiomeWebhookSection
+BiomeWebhookBox.Size = UDim2.new(0.9, 0, 0, 40)
+BiomeWebhookBox.Position = UDim2.new(0.05, 0, 0.35, 0)
+BiomeWebhookBox.BackgroundColor3 = Color3.fromRGB(50, 50, 55)
+BiomeWebhookBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+BiomeWebhookBox.PlaceholderText = "Paste webhook URL for Biome alerts..."
+BiomeWebhookBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
+BiomeWebhookBox.Text = ""
+BiomeWebhookBox.Font = Enum.Font.Gotham
+BiomeWebhookBox.TextSize = 12
+BiomeWebhookBox.TextWrapped = true
 
--- Biome Status
-local BiomeStatusSection = Instance.new("Frame")
-BiomeStatusSection.Parent = BiomeContent
-BiomeStatusSection.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
-BiomeStatusSection.Size = UDim2.new(0.9, 0, 0, 80)
-BiomeStatusSection.Position = UDim2.new(0.05, 0, 0.65, 0)
+local BiomeWebhookBoxCorner = Instance.new("UICorner")
+BiomeWebhookBoxCorner.CornerRadius = UDim.new(0, 4)
+BiomeWebhookBoxCorner.Parent = BiomeWebhookBox
 
-local BiomeStatusCorner = Instance.new("UICorner")
-BiomeStatusCorner.CornerRadius = UDim.new(0, 6)
-BiomeStatusCorner.Parent = BiomeStatusSection
+-- Biome Server Link Section
+local BiomeServerSection = Instance.new("Frame")
+BiomeServerSection.Parent = BiomeContent
+BiomeServerSection.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
+BiomeServerSection.Size = UDim2.new(0.9, 0, 0, 80)
+BiomeServerSection.Position = UDim2.new(0.05, 0, 0.35, 0)
 
+local BiomeServerCorner = Instance.new("UICorner")
+BiomeServerCorner.CornerRadius = UDim.new(0, 6)
+BiomeServerCorner.Parent = BiomeServerSection
+
+local BiomeServerLabel = Instance.new("TextLabel")
+BiomeServerLabel.Parent = BiomeServerSection
+BiomeServerLabel.BackgroundTransparency = 1
+BiomeServerLabel.Size = UDim2.new(0.9, 0, 0, 30)
+BiomeServerLabel.Position = UDim2.new(0.05, 0, 0, 0)
+BiomeServerLabel.Text = "Private Server Link:"
+BiomeServerLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+BiomeServerLabel.Font = Enum.Font.GothamBold
+BiomeServerLabel.TextSize = 14
+BiomeServerLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+local BiomeServerBox = Instance.new("TextBox")
+BiomeServerBox.Parent = BiomeServerSection
+BiomeServerBox.Size = UDim2.new(0.9, 0, 0, 35)
+BiomeServerBox.Position = UDim2.new(0.05, 0, 0.45, 0)
+BiomeServerBox.BackgroundColor3 = Color3.fromRGB(50, 50, 55)
+BiomeServerBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+BiomeServerBox.PlaceholderText = "Private server link (optional)..."
+BiomeServerBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
+BiomeServerBox.Text = ""
+BiomeServerBox.Font = Enum.Font.Gotham
+BiomeServerBox.TextSize = 12
+BiomeServerBox.TextWrapped = true
+
+local BiomeServerBoxCorner = Instance.new("UICorner")
+BiomeServerBoxCorner.CornerRadius = UDim.new(0, 4)
+BiomeServerBoxCorner.Parent = BiomeServerBox
+
+-- Biome Action Buttons
+local BiomeActionFrame = Instance.new("Frame")
+BiomeActionFrame.Parent = BiomeContent
+BiomeActionFrame.BackgroundTransparency = 1
+BiomeActionFrame.Size = UDim2.new(0.9, 0, 0, 40)
+BiomeActionFrame.Position = UDim2.new(0.05, 0, 0.65, 0)
+
+local BiomeApplyButton = Instance.new("TextButton")
+BiomeApplyButton.Parent = BiomeActionFrame
+BiomeApplyButton.Size = UDim2.new(0.48, 0, 1, 0)
+BiomeApplyButton.Position = UDim2.new(0, 0, 0, 0)
+BiomeApplyButton.BackgroundColor3 = Color3.fromRGB(70, 150, 70)
+BiomeApplyButton.Text = "Apply"
+BiomeApplyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+BiomeApplyButton.Font = Enum.Font.GothamBold
+BiomeApplyButton.TextSize = 14
+
+local BiomeApplyCorner = Instance.new("UICorner")
+BiomeApplyCorner.CornerRadius = UDim.new(0, 6)
+BiomeApplyCorner.Parent = BiomeApplyButton
+
+local BiomeTestButton = Instance.new("TextButton")
+BiomeTestButton.Parent = BiomeActionFrame
+BiomeTestButton.Size = UDim2.new(0.48, 0, 1, 0)
+BiomeTestButton.Position = UDim2.new(0.52, 0, 0, 0)
+BiomeTestButton.BackgroundColor3 = Color3.fromRGB(50, 100, 200)
+BiomeTestButton.Text = "Test"
+BiomeTestButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+BiomeTestButton.Font = Enum.Font.GothamBold
+BiomeTestButton.TextSize = 14
+
+local BiomeTestCorner = Instance.new("UICorner")
+BiomeTestCorner.CornerRadius = UDim.new(0, 6)
+BiomeTestCorner.Parent = BiomeTestButton
+
+-- Biome Status Label
 local BiomeStatusLabel = Instance.new("TextLabel")
-BiomeStatusLabel.Parent = BiomeStatusSection
+BiomeStatusLabel.Parent = BiomeContent
 BiomeStatusLabel.BackgroundTransparency = 1
-BiomeStatusLabel.Size = UDim2.new(0.9, 0, 0.8, 0)
-BiomeStatusLabel.Position = UDim2.new(0.05, 0, 0.1, 0)
-BiomeStatusLabel.Text = "Biome Monitoring Status:\n• GLITCHED: Ready\n• DREAMSPACE: Ready"
+BiomeStatusLabel.Size = UDim2.new(0.9, 0, 0, 40)
+BiomeStatusLabel.Position = UDim2.new(0.05, 0, 0.8, 0)
+BiomeStatusLabel.Text = "Status: Ready to setup Biome detection"
 BiomeStatusLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
 BiomeStatusLabel.Font = Enum.Font.Gotham
 BiomeStatusLabel.TextSize = 12
 BiomeStatusLabel.TextWrapped = true
-BiomeStatusLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 -- Toggle Button
 local ToggleButton = Instance.new("TextButton")
@@ -313,8 +381,11 @@ CloseCorner.Parent = CloseButton
 
 -- ===== VARIABLES & CONFIGURATION =====
 local merchantWebhookUrl = ""
-local privateServerLink = ""
-local isMonitoring = false
+local biomeWebhookUrl = ""
+local merchantPrivateServerLink = ""
+local biomePrivateServerLink = ""
+local isMerchantMonitoring = false
+local isBiomeMonitoring = false
 local detectedMessages = {}
 
 -- DEFAULT ROLE IDs (HIDDEN)
@@ -402,15 +473,15 @@ local function switchToTab(tabName)
 end
 
 -- ===== DETECTION FUNCTIONS =====
-local function sendToDiscord(message, playerName, mentionType)
+local function sendMerchantToDiscord(message, playerName, mentionType)
     if merchantWebhookUrl == "" then
-        StatusLabel.Text = "Status: Webhook not set"
+        MerchantStatusLabel.Text = "Status: Merchant webhook not set"
         return false
     end
     
     local currentTime = os.date("%H:%M:%S")
     local content = ""
-    local title = "🚨 Detection Alert!"
+    local title = "🚨 Merchant Detected!"
     local color = 16711680
     
     if mentionType == "Jester" then
@@ -421,14 +492,6 @@ local function sendToDiscord(message, playerName, mentionType)
         content = "<@&" .. ROLE_IDS.Mari .. "> "
         title = "🌸 Mari Detected!"
         color = 15277667
-    elseif mentionType == "Glitched" then
-        content = "<@&" .. ROLE_IDS.Glitched .. "> "
-        title = "⚡ GLITCHED Biome Active!"
-        color = 15105570
-    elseif mentionType == "Dreamspace" then
-        content = "<@&" .. ROLE_IDS.Dreamspace .. "> "
-        title = "💤 DREAMSPACE Biome Active!"
-        color = 10181046
     end
     
     local embedData = {
@@ -437,12 +500,12 @@ local function sendToDiscord(message, playerName, mentionType)
         ["color"] = color,
         ["fields"] = {
             {
-                ["name"] = "Source",
-                ["value"] = playerName or "System",
+                ["name"] = "Player",
+                ["value"] = playerName or "Unknown",
                 ["inline"] = true
             },
             {
-                ["name"] = "Type",
+                ["name"] = "Merchant Type",
                 ["value"] = mentionType,
                 ["inline"] = true
             },
@@ -453,14 +516,14 @@ local function sendToDiscord(message, playerName, mentionType)
             }
         },
         ["footer"] = {
-            ["text"] = "Jester/Mari Detector"
+            ["text"] = "Merchant Detector"
         }
     }
     
-    if privateServerLink ~= "" then
+    if merchantPrivateServerLink ~= "" then
         table.insert(embedData.fields, {
             ["name"] = "Private Server",
-            ["value"] = privateServerLink,
+            ["value"] = merchantPrivateServerLink,
             ["inline"] = false
         })
     end
@@ -468,7 +531,7 @@ local function sendToDiscord(message, playerName, mentionType)
     local data = {
         ["content"] = content,
         ["embeds"] = {embedData},
-        ["username"] = "ROBLOX Detector"
+        ["username"] = "ROBLOX Merchant Alert"
     }
     
     local success, result = pcall(function()
@@ -484,24 +547,105 @@ local function sendToDiscord(message, playerName, mentionType)
     end)
     
     if success then
-        StatusLabel.Text = "Status: " .. mentionType .. " detected! " .. currentTime
+        MerchantStatusLabel.Text = "Status: " .. mentionType .. " detected! " .. currentTime
         return true
     else
-        StatusLabel.Text = "Status: Failed to send webhook"
+        MerchantStatusLabel.Text = "Status: Failed to send merchant webhook"
         return false
     end
 end
 
-local function checkAllMessages(message, speaker)
+local function sendBiomeToDiscord(message, biomeName)
+    if biomeWebhookUrl == "" then
+        BiomeStatusLabel.Text = "Status: Biome webhook not set"
+        return false
+    end
+    
+    local currentTime = os.date("%H:%M:%S")
+    local content = ""
+    local title = "🌍 Biome Activated!"
+    local color = 3447003
+    
+    if biomeName == "Glitched" then
+        content = "<@&" .. ROLE_IDS.Glitched .. "> "
+        title = "⚡ GLITCHED Biome Active!"
+        color = 15105570
+    elseif biomeName == "Dreamspace" then
+        content = "<@&" .. ROLE_IDS.Dreamspace .. "> "
+        title = "💤 DREAMSPACE Biome Active!"
+        color = 10181046
+    end
+    
+    local embedData = {
+        ["title"] = title,
+        ["description"] = message,
+        ["color"] = color,
+        ["fields"] = {
+            {
+                ["name"] = "Biome Type",
+                ["value"] = biomeName,
+                ["inline"] = true
+            },
+            {
+                ["name"] = "Trigger Message",
+                ["value"] = message,
+                ["inline"] = true
+            },
+            {
+                ["name"] = "Time",
+                ["value"] = currentTime,
+                ["inline"] = true
+            }
+        },
+        ["footer"] = {
+            ["text"] = "Biome Detector"
+        }
+    }
+    
+    if biomePrivateServerLink ~= "" then
+        table.insert(embedData.fields, {
+            ["name"] = "Private Server",
+            ["value"] = biomePrivateServerLink,
+            ["inline"] = false
+        })
+    end
+    
+    local data = {
+        ["content"] = content,
+        ["embeds"] = {embedData},
+        ["username"] = "ROBLOX Biome Alert"
+    }
+    
+    local success, result = pcall(function()
+        local response = request({
+            Url = biomeWebhookUrl,
+            Method = "POST",
+            Headers = {
+                ["Content-Type"] = "application/json"
+            },
+            Body = HttpService:JSONEncode(data)
+        })
+        return response
+    end)
+    
+    if success then
+        BiomeStatusLabel.Text = "Status: " .. biomeName .. " detected! " .. currentTime
+        return true
+    else
+        BiomeStatusLabel.Text = "Status: Failed to send biome webhook"
+        return false
+    end
+end
+
+local function checkMerchantMessages(message, speaker)
     local lowerMsg = string.lower(tostring(message))
     
-    -- Check merchants
     if string.find(lowerMsg, "jester") then
         local fullMessage = speaker .. ": " .. message
         if not table.find(detectedMessages, fullMessage) then
             table.insert(detectedMessages, fullMessage)
             if #detectedMessages > 20 then table.remove(detectedMessages, 1) end
-            sendToDiscord(fullMessage, speaker, "Jester")
+            sendMerchantToDiscord(fullMessage, speaker, "Jester")
         end
     end
     
@@ -510,11 +654,12 @@ local function checkAllMessages(message, speaker)
         if not table.find(detectedMessages, fullMessage) then
             table.insert(detectedMessages, fullMessage)
             if #detectedMessages > 20 then table.remove(detectedMessages, 1) end
-            sendToDiscord(fullMessage, speaker, "Mari")
+            sendMerchantToDiscord(fullMessage, speaker, "Mari")
         end
     end
-    
-    -- Check biomes
+end
+
+local function checkBiomeMessages(message, speaker)
     for biomeName, patterns in pairs(BIOME_PATTERNS) do
         for _, pattern in ipairs(patterns) do
             if string.find(message, pattern) then
@@ -522,7 +667,7 @@ local function checkAllMessages(message, speaker)
                 if not table.find(detectedMessages, fullMessage) then
                     table.insert(detectedMessages, fullMessage)
                     if #detectedMessages > 20 then table.remove(detectedMessages, 1) end
-                    sendToDiscord(fullMessage, "System", biomeName)
+                    sendBiomeToDiscord(fullMessage, biomeName)
                 end
                 break
             end
@@ -530,20 +675,38 @@ local function checkAllMessages(message, speaker)
     end
 end
 
-local function startMonitoring()
-    if isMonitoring then return end
-    isMonitoring = true
-    StatusLabel.Text = "Status: Monitoring active..."
+local function startMerchantMonitoring()
+    if isMerchantMonitoring then return end
+    isMerchantMonitoring = true
+    MerchantStatusLabel.Text = "Status: Merchant monitoring active..."
     
     for _, player in pairs(Players:GetPlayers()) do
         player.Chatted:Connect(function(message)
-            checkAllMessages(message, player.Name)
+            checkMerchantMessages(message, player.Name)
         end)
     end
     
     Players.PlayerAdded:Connect(function(player)
         player.Chatted:Connect(function(message)
-            checkAllMessages(message, player.Name)
+            checkMerchantMessages(message, player.Name)
+        end)
+    end)
+end
+
+local function startBiomeMonitoring()
+    if isBiomeMonitoring then return end
+    isBiomeMonitoring = true
+    BiomeStatusLabel.Text = "Status: Biome monitoring active..."
+    
+    for _, player in pairs(Players:GetPlayers()) do
+        player.Chatted:Connect(function(message)
+            checkBiomeMessages(message, player.Name)
+        end)
+    end
+    
+    Players.PlayerAdded:Connect(function(player)
+        player.Chatted:Connect(function(message)
+            checkBiomeMessages(message, player.Name)
         end)
     end)
 end
@@ -562,41 +725,68 @@ end)
 MerchantTab.MouseButton1Click:Connect(function() switchToTab("merchant") end)
 BiomeTab.MouseButton1Click:Connect(function() switchToTab("biome") end)
 
-ApplyButton.MouseButton1Click:Connect(function()
-    merchantWebhookUrl = WebhookBox.Text
-    privateServerLink = ServerBox.Text
+-- Merchant Tab Events
+MerchantApplyButton.MouseButton1Click:Connect(function()
+    merchantWebhookUrl = MerchantWebhookBox.Text
+    merchantPrivateServerLink = MerchantServerBox.Text
     
     if merchantWebhookUrl ~= "" and string.find(merchantWebhookUrl:lower(), "discord.com/api/webhooks") then
-        StatusLabel.Text = "Status: Starting monitor..."
+        MerchantStatusLabel.Text = "Status: Starting merchant monitor..."
         wait(1)
-        startMonitoring()
-        MainContainer.Visible = false
-        ToggleButton.Visible = true
+        startMerchantMonitoring()
     else
-        StatusLabel.Text = "Status: Invalid webhook URL"
+        MerchantStatusLabel.Text = "Status: Invalid merchant webhook URL"
     end
 end)
 
-TestButton.MouseButton1Click:Connect(function()
-    merchantWebhookUrl = WebhookBox.Text
+MerchantTestButton.MouseButton1Click:Connect(function()
+    merchantWebhookUrl = MerchantWebhookBox.Text
     
     if merchantWebhookUrl ~= "" and string.find(merchantWebhookUrl:lower(), "discord.com/api/webhooks") then
-        StatusLabel.Text = "Status: Sending test..."
-        local success = sendToDiscord("🧪 Test notification from detector", "TEST", "Jester")
+        MerchantStatusLabel.Text = "Status: Sending merchant test..."
+        local success = sendMerchantToDiscord("🧪 Test notification for Merchant detection", "TEST", "Jester")
         if success then
-            StatusLabel.Text = "Status: Test sent!"
+            MerchantStatusLabel.Text = "Status: Merchant test sent!"
         end
     else
-        StatusLabel.Text = "Status: Set webhook first"
+        MerchantStatusLabel.Text = "Status: Set merchant webhook first"
+    end
+end)
+
+-- Biome Tab Events
+BiomeApplyButton.MouseButton1Click:Connect(function()
+    biomeWebhookUrl = BiomeWebhookBox.Text
+    biomePrivateServerLink = BiomeServerBox.Text
+    
+    if biomeWebhookUrl ~= "" and string.find(biomeWebhookUrl:lower(), "discord.com/api/webhooks") then
+        BiomeStatusLabel.Text = "Status: Starting biome monitor..."
+        wait(1)
+        startBiomeMonitoring()
+    else
+        BiomeStatusLabel.Text = "Status: Invalid biome webhook URL"
+    end
+end)
+
+BiomeTestButton.MouseButton1Click:Connect(function()
+    biomeWebhookUrl = BiomeWebhookBox.Text
+    
+    if biomeWebhookUrl ~= "" and string.find(biomeWebhookUrl:lower(), "discord.com/api/webhooks") then
+        BiomeStatusLabel.Text = "Status: Sending biome test..."
+        local success = sendBiomeToDiscord("[Manager]: Unexpected error occurred. [Code 404]", "Glitched")
+        if success then
+            BiomeStatusLabel.Text = "Status: Biome test sent!"
+        end
+    else
+        BiomeStatusLabel.Text = "Status: Set biome webhook first"
     end
 end)
 
 -- Initialize
 switchToTab("merchant")
-print("✅ Simple 2-Tab Detector Loaded!")
+print("✅ Dual Tab Detector Loaded!")
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "Jester/Mari Detector",
+    Title = "Jester/Mari & Biome Detector",
     Text = "Click the 🔔 button to open",
     Duration = 5
 })
