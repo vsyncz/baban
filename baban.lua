@@ -1,4 +1,4 @@
--- Jester/Mari & Biome Detector - Both Tabs with Full Features
+-- Jester/Mari & Biome Detector - Toggle On/Off Version
 print("=== JESTER/MARI & BIOME DETECTOR LOADED ===")
 
 local Players = game:GetService("Players")
@@ -175,19 +175,19 @@ MerchantActionFrame.BackgroundTransparency = 1
 MerchantActionFrame.Size = UDim2.new(0.9, 0, 0, 40)
 MerchantActionFrame.Position = UDim2.new(0.05, 0, 0.65, 0)
 
-local MerchantApplyButton = Instance.new("TextButton")
-MerchantApplyButton.Parent = MerchantActionFrame
-MerchantApplyButton.Size = UDim2.new(0.48, 0, 1, 0)
-MerchantApplyButton.Position = UDim2.new(0, 0, 0, 0)
-MerchantApplyButton.BackgroundColor3 = Color3.fromRGB(70, 150, 70)
-MerchantApplyButton.Text = "Apply"
-MerchantApplyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-MerchantApplyButton.Font = Enum.Font.GothamBold
-MerchantApplyButton.TextSize = 14
+local MerchantToggleButton = Instance.new("TextButton")
+MerchantToggleButton.Parent = MerchantActionFrame
+MerchantToggleButton.Size = UDim2.new(0.48, 0, 1, 0)
+MerchantToggleButton.Position = UDim2.new(0, 0, 0, 0)
+MerchantToggleButton.BackgroundColor3 = Color3.fromRGB(150, 60, 60)
+MerchantToggleButton.Text = "OFF"
+MerchantToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+MerchantToggleButton.Font = Enum.Font.GothamBold
+MerchantToggleButton.TextSize = 14
 
-local MerchantApplyCorner = Instance.new("UICorner")
-MerchantApplyCorner.CornerRadius = UDim.new(0, 6)
-MerchantApplyCorner.Parent = MerchantApplyButton
+local MerchantToggleCorner = Instance.new("UICorner")
+MerchantToggleCorner.CornerRadius = UDim.new(0, 6)
+MerchantToggleCorner.Parent = MerchantToggleButton
 
 local MerchantTestButton = Instance.new("TextButton")
 MerchantTestButton.Parent = MerchantActionFrame
@@ -209,7 +209,7 @@ MerchantStatusLabel.Parent = MerchantContent
 MerchantStatusLabel.BackgroundTransparency = 1
 MerchantStatusLabel.Size = UDim2.new(0.9, 0, 0, 40)
 MerchantStatusLabel.Position = UDim2.new(0.05, 0, 0.8, 0)
-MerchantStatusLabel.Text = "Status: Ready to setup Merchant detection"
+MerchantStatusLabel.Text = "Status: Ready - Set webhook and toggle ON"
 MerchantStatusLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
 MerchantStatusLabel.Font = Enum.Font.Gotham
 MerchantStatusLabel.TextSize = 12
@@ -308,19 +308,19 @@ BiomeActionFrame.BackgroundTransparency = 1
 BiomeActionFrame.Size = UDim2.new(0.9, 0, 0, 40)
 BiomeActionFrame.Position = UDim2.new(0.05, 0, 0.65, 0)
 
-local BiomeApplyButton = Instance.new("TextButton")
-BiomeApplyButton.Parent = BiomeActionFrame
-BiomeApplyButton.Size = UDim2.new(0.48, 0, 1, 0)
-BiomeApplyButton.Position = UDim2.new(0, 0, 0, 0)
-BiomeApplyButton.BackgroundColor3 = Color3.fromRGB(70, 150, 70)
-BiomeApplyButton.Text = "Apply"
-BiomeApplyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-BiomeApplyButton.Font = Enum.Font.GothamBold
-BiomeApplyButton.TextSize = 14
+local BiomeToggleButton = Instance.new("TextButton")
+BiomeToggleButton.Parent = BiomeActionFrame
+BiomeToggleButton.Size = UDim2.new(0.48, 0, 1, 0)
+BiomeToggleButton.Position = UDim2.new(0, 0, 0, 0)
+BiomeToggleButton.BackgroundColor3 = Color3.fromRGB(150, 60, 60)
+BiomeToggleButton.Text = "OFF"
+BiomeToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+BiomeToggleButton.Font = Enum.Font.GothamBold
+BiomeToggleButton.TextSize = 14
 
-local BiomeApplyCorner = Instance.new("UICorner")
-BiomeApplyCorner.CornerRadius = UDim.new(0, 6)
-BiomeApplyCorner.Parent = BiomeApplyButton
+local BiomeToggleCorner = Instance.new("UICorner")
+BiomeToggleCorner.CornerRadius = UDim.new(0, 6)
+BiomeToggleCorner.Parent = BiomeToggleButton
 
 local BiomeTestButton = Instance.new("TextButton")
 BiomeTestButton.Parent = BiomeActionFrame
@@ -342,7 +342,7 @@ BiomeStatusLabel.Parent = BiomeContent
 BiomeStatusLabel.BackgroundTransparency = 1
 BiomeStatusLabel.Size = UDim2.new(0.9, 0, 0, 40)
 BiomeStatusLabel.Position = UDim2.new(0.05, 0, 0.8, 0)
-BiomeStatusLabel.Text = "Status: Ready to setup Biome detection"
+BiomeStatusLabel.Text = "Status: Ready - Set webhook and toggle ON"
 BiomeStatusLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
 BiomeStatusLabel.Font = Enum.Font.Gotham
 BiomeStatusLabel.TextSize = 12
@@ -638,6 +638,8 @@ local function sendBiomeToDiscord(message, biomeName)
 end
 
 local function checkMerchantMessages(message, speaker)
+    if not isMerchantMonitoring then return end
+    
     local lowerMsg = string.lower(tostring(message))
     
     if string.find(lowerMsg, "jester") then
@@ -660,6 +662,8 @@ local function checkMerchantMessages(message, speaker)
 end
 
 local function checkBiomeMessages(message, speaker)
+    if not isBiomeMonitoring then return end
+    
     for biomeName, patterns in pairs(BIOME_PATTERNS) do
         for _, pattern in ipairs(patterns) do
             if string.find(message, pattern) then
@@ -677,8 +681,16 @@ end
 
 local function startMerchantMonitoring()
     if isMerchantMonitoring then return end
+    
+    if merchantWebhookUrl == "" or not string.find(merchantWebhookUrl:lower(), "discord.com/api/webhooks") then
+        MerchantStatusLabel.Text = "Status: Invalid webhook URL"
+        return
+    end
+    
     isMerchantMonitoring = true
-    MerchantStatusLabel.Text = "Status: Merchant monitoring active..."
+    MerchantToggleButton.BackgroundColor3 = Color3.fromRGB(70, 150, 70)
+    MerchantToggleButton.Text = "ON"
+    MerchantStatusLabel.Text = "Status: Merchant monitoring ACTIVE"
     
     for _, player in pairs(Players:GetPlayers()) do
         player.Chatted:Connect(function(message)
@@ -693,10 +705,25 @@ local function startMerchantMonitoring()
     end)
 end
 
+local function stopMerchantMonitoring()
+    isMerchantMonitoring = false
+    MerchantToggleButton.BackgroundColor3 = Color3.fromRGB(150, 60, 60)
+    MerchantToggleButton.Text = "OFF"
+    MerchantStatusLabel.Text = "Status: Merchant monitoring STOPPED"
+end
+
 local function startBiomeMonitoring()
     if isBiomeMonitoring then return end
+    
+    if biomeWebhookUrl == "" or not string.find(biomeWebhookUrl:lower(), "discord.com/api/webhooks") then
+        BiomeStatusLabel.Text = "Status: Invalid webhook URL"
+        return
+    end
+    
     isBiomeMonitoring = true
-    BiomeStatusLabel.Text = "Status: Biome monitoring active..."
+    BiomeToggleButton.BackgroundColor3 = Color3.fromRGB(70, 150, 70)
+    BiomeToggleButton.Text = "ON"
+    BiomeStatusLabel.Text = "Status: Biome monitoring ACTIVE"
     
     for _, player in pairs(Players:GetPlayers()) do
         player.Chatted:Connect(function(message)
@@ -709,6 +736,13 @@ local function startBiomeMonitoring()
             checkBiomeMessages(message, player.Name)
         end)
     end)
+end
+
+local function stopBiomeMonitoring()
+    isBiomeMonitoring = false
+    BiomeToggleButton.BackgroundColor3 = Color3.fromRGB(150, 60, 60)
+    BiomeToggleButton.Text = "OFF"
+    BiomeStatusLabel.Text = "Status: Biome monitoring STOPPED"
 end
 
 -- ===== EVENT HANDLERS =====
@@ -726,16 +760,13 @@ MerchantTab.MouseButton1Click:Connect(function() switchToTab("merchant") end)
 BiomeTab.MouseButton1Click:Connect(function() switchToTab("biome") end)
 
 -- Merchant Tab Events
-MerchantApplyButton.MouseButton1Click:Connect(function()
-    merchantWebhookUrl = MerchantWebhookBox.Text
-    merchantPrivateServerLink = MerchantServerBox.Text
-    
-    if merchantWebhookUrl ~= "" and string.find(merchantWebhookUrl:lower(), "discord.com/api/webhooks") then
-        MerchantStatusLabel.Text = "Status: Starting merchant monitor..."
-        wait(1)
-        startMerchantMonitoring()
+MerchantToggleButton.MouseButton1Click:Connect(function()
+    if isMerchantMonitoring then
+        stopMerchantMonitoring()
     else
-        MerchantStatusLabel.Text = "Status: Invalid merchant webhook URL"
+        merchantWebhookUrl = MerchantWebhookBox.Text
+        merchantPrivateServerLink = MerchantServerBox.Text
+        startMerchantMonitoring()
     end
 end)
 
@@ -754,16 +785,13 @@ MerchantTestButton.MouseButton1Click:Connect(function()
 end)
 
 -- Biome Tab Events
-BiomeApplyButton.MouseButton1Click:Connect(function()
-    biomeWebhookUrl = BiomeWebhookBox.Text
-    biomePrivateServerLink = BiomeServerBox.Text
-    
-    if biomeWebhookUrl ~= "" and string.find(biomeWebhookUrl:lower(), "discord.com/api/webhooks") then
-        BiomeStatusLabel.Text = "Status: Starting biome monitor..."
-        wait(1)
-        startBiomeMonitoring()
+BiomeToggleButton.MouseButton1Click:Connect(function()
+    if isBiomeMonitoring then
+        stopBiomeMonitoring()
     else
-        BiomeStatusLabel.Text = "Status: Invalid biome webhook URL"
+        biomeWebhookUrl = BiomeWebhookBox.Text
+        biomePrivateServerLink = BiomeServerBox.Text
+        startBiomeMonitoring()
     end
 end)
 
@@ -783,7 +811,7 @@ end)
 
 -- Initialize
 switchToTab("merchant")
-print("✅ Dual Tab Detector Loaded!")
+print("✅ Toggle-Based Detector Loaded!")
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
     Title = "Jester/Mari & Biome Detector",
