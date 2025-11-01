@@ -123,7 +123,7 @@ webhookBox.BackgroundColor3 = Color3.fromRGB(50, 50, 55)
 webhookBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 webhookBox.PlaceholderText = "Tempel URL webhook Anda di sini..."
 webhookBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
-webhookBox.Text = "https://discord.com/api/webhooks/1434229802562228224/KrEhbgwII1hPD4HYAKcG9RARQS2262TMjHyXYCBU0vFeUWbV-SblmewXic7-kVeRsXN"
+webhookBox.Text = ""
 webhookBox.Font = Enum.Font.Gotham
 webhookBox.TextSize = 12
 webhookBox.TextXAlignment = Enum.TextXAlignment.Left
@@ -219,7 +219,7 @@ serverBox.BackgroundColor3 = Color3.fromRGB(50, 50, 55)
 serverBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 serverBox.PlaceholderText = "Link private server (opsional)..."
 serverBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
-serverBox.Text = "https://www.roblox.com/share?code=5fbb51da5fe5ce47a3d19a8438c5c9d3&type=Server"
+serverBox.Text = ""
 serverBox.Font = Enum.Font.Gotham
 serverBox.TextSize = 12
 serverBox.TextWrapped = true
@@ -279,7 +279,7 @@ testBtn.Position = UDim2.new(0.52, 0, 0, 0)
 testBtn.BackgroundColor3 = Color3.fromRGB(50, 100, 200)
 testBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 testBtn.Text = "Test"
-saveBtn.Font = Enum.Font.GothamBold
+testBtn.Font = Enum.Font.GothamBold
 testBtn.TextSize = 14
 testBtn.Parent = buttonSection
 
