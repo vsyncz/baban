@@ -1,4 +1,4 @@
--- Jester/Mari & Biome Detector - Toggle On/Off Version
+-- Jester/Mari & Biome Detector - No Anti-Spam Version
 print("=== JESTER/MARI & BIOME DETECTOR LOADED ===")
 
 local Players = game:GetService("Players")
@@ -386,7 +386,6 @@ local merchantPrivateServerLink = ""
 local biomePrivateServerLink = ""
 local isMerchantMonitoring = false
 local isBiomeMonitoring = false
-local detectedMessages = {}
 
 -- DEFAULT ROLE IDs (HIDDEN)
 local ROLE_IDS = {
@@ -642,22 +641,13 @@ local function checkMerchantMessages(message, speaker)
     
     local lowerMsg = string.lower(tostring(message))
     
+    -- ANTI-SPAM DIHAPUS - langsung kirim notifikasi setiap deteksi
     if string.find(lowerMsg, "jester") then
-        local fullMessage = speaker .. ": " .. message
-        if not table.find(detectedMessages, fullMessage) then
-            table.insert(detectedMessages, fullMessage)
-            if #detectedMessages > 20 then table.remove(detectedMessages, 1) end
-            sendMerchantToDiscord(fullMessage, speaker, "Jester")
-        end
+        sendMerchantToDiscord(speaker .. ": " .. message, speaker, "Jester")
     end
     
     if string.find(lowerMsg, "mari") then
-        local fullMessage = speaker .. ": " .. message
-        if not table.find(detectedMessages, fullMessage) then
-            table.insert(detectedMessages, fullMessage)
-            if #detectedMessages > 20 then table.remove(detectedMessages, 1) end
-            sendMerchantToDiscord(fullMessage, speaker, "Mari")
-        end
+        sendMerchantToDiscord(speaker .. ": " .. message, speaker, "Mari")
     end
 end
 
@@ -666,13 +656,9 @@ local function checkBiomeMessages(message, speaker)
     
     for biomeName, patterns in pairs(BIOME_PATTERNS) do
         for _, pattern in ipairs(patterns) do
+            -- ANTI-SPAM DIHAPUS - langsung kirim notifikasi setiap deteksi
             if string.find(message, pattern) then
-                local fullMessage = speaker .. ": " .. message
-                if not table.find(detectedMessages, fullMessage) then
-                    table.insert(detectedMessages, fullMessage)
-                    if #detectedMessages > 20 then table.remove(detectedMessages, 1) end
-                    sendBiomeToDiscord(fullMessage, biomeName)
-                end
+                sendBiomeToDiscord(speaker .. ": " .. message, biomeName)
                 break
             end
         end
@@ -811,7 +797,7 @@ end)
 
 -- Initialize
 switchToTab("merchant")
-print("✅ Toggle-Based Detector Loaded!")
+print("✅ No Anti-Spam Detector Loaded!")
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
     Title = "Jester/Mari & Biome Detector",
